@@ -13,45 +13,82 @@ public class TestDrive {
   public static void main(String[] args) throws Exception {
     Scanner scn = new Scanner(System.in);
     Moped m = new Moped();
+    Moped b= new Moped();
+    Moped c=new Moped();
 
     // solution
     System.out.println("Thanks for jumping on the moped.  We're currently parked outside Dr. Rossinsky DDS's office at 10th St. and 5th Ave, facing South.  May I say your teeth look very clean.");
     System.out.println("What would you like to do?  At any time, say \"help\" for assistance.");
+    b.setMopedName("Drunk1");
+    c.setMopedName("Drunk2");
 
     boolean keepGoing = true;
     String response = "";
     while (!response.equals("park")) {
-      response = scn.nextLine();
-        switch (response) {
-            case "go left":
-                m.goLeft();
-                m.printLocation();
-                break;
-            case "go right":
-                m.goRight();
-                m.printLocation();
-                break;
-            case "straight on":
-                m.goStraight();
-                m.printLocation();
-                break;
-            case "back up":
-                m.goBackwards();
-                m.printLocation();
-                break;
-            case "fill it up":
-                m.fillGas();
-                break;
-            case "how we doin'?":
-                m.printGasLevel();
-                break;
-            case "park":
-                m.park();
-                break;
-            default:
-                System.out.println("I'm sorry, I don't understand that command. Type 'help' for a list of commands");
+        while(keepGoing){
+            response = scn.nextLine();
+            switch (response) {
+                case "go left":
+                    m.goLeft();
+                    m.printLocation();
+                    b.drunk();
+                    c.drunk();
+                    if(b.getLocation().equals(m.getLocation())||c.getLocation().equals(m.getLocation())){
+                        System.out.println("Crashed!");
+                        System.exit(0);
+                    }
+                    break;
+                case "go right":
+                    m.goRight();
+                    m.printLocation();
+                    b.drunk();
+                    c.drunk();
+                    if(b.getLocation().equals(m.getLocation())||c.getLocation().equals(m.getLocation())){
+                        System.out.println("Crashed!");
+                        System.exit(0);
+                    }
+                    break;
+                case "straight on":
+                    m.goStraight();
+                    m.printLocation();
+                    b.drunk();
+                    c.drunk();
+                    if(b.getLocation().equals(m.getLocation())||c.getLocation().equals(m.getLocation())){
+                        System.out.println("Crashed!");
+                        System.exit(0);
+                    }
+                    break;
+                case "back up":
+                    m.goBackwards();
+                    m.printLocation();
+                    b.drunk();
+                    c.drunk();
+                    if(b.getLocation().equals(m.getLocation())||c.getLocation().equals(m.getLocation())){
+                        System.out.println("Crashed!");
+                        System.exit(0);
+                    }
+                    break;
+                case "fill it up":
+                    m.fillGas();
+                    break;
+                case "how we doin'?":
+                    m.printGasLevel();
+                    break;
+                case "park":
+                    m.park();
+                    break;
+                case "help":
+                    System.out.println(m.getHelp());
+                    break;
+                case "go to Xi'an Famous Foods":
+                    m.goToXianFamousFoods();
+                    break;
+                default:
+                    System.out.println("I'm sorry, I don't understand that command. Type 'help' for a list of commands");
         }      
     }
+        scn.close();
+}
   }
 
 }
